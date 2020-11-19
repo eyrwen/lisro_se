@@ -319,6 +319,39 @@ a:focus {
   margin-bottom: var(--spacing-8);
 }
 
+img {
+  overflow: hidden;
+  transition-duration: 0.8s;
+  transition-property: transform;
+}
+img {
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+}
+
+.gatsby-image-wrapper:hover {
+  -webkit-animation: spin 7s linear infinite;
+  -moz-animation: spin 7s linear infinite;
+  animation: spin 7s linear infinite;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
 /* Media queries */
 
 @media (max-width: 42rem) {
