@@ -2,8 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `Gatsby Starter Blog`,
     author: {
-      name: `Lis Ostrow`,
-      summary: ``,
+      name: `Lis Rose Ostrow`,
+      summary: `Software Engineer`,
     },
     description: ``,
     siteUrl: `https://lisro.se/`,

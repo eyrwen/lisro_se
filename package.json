@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "class-names": "^1.0.0",
+    "fontsource-montserrat": "^3.0.9",
+    "fontsource-raleway": "^3.0.9",
     "gatsby": "^2.25.3",
     "gatsby-image": "^2.4.21",
     "gatsby-plugin-feed": "^2.6.0",
