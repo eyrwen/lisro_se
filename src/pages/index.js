@@ -8,14 +8,7 @@ import SEO from "../components/seo"
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
 
-  return (
-    <Layout author={data.site.siteMetadata.author}>
-      <p
-        className="page-content"
-        dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
-      />
-    </Layout>
-  )
+  return <Layout author={data.site.siteMetadata.author}></Layout>
 }
 
 export default BlogIndex

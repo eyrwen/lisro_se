@@ -269,6 +269,8 @@
       background-color: $color-primary;
       width: 25vw;
       height: 100vh;
+      display: flex;
+      flex-direction: column;
 
       animation: $slide-time ease-out 0s slideInFromLeft;
 
@@ -279,7 +281,6 @@
         width: 100%;
         text-align: right;
         color: #FEF5E7;
-        cursor: pointer;
 
         &.header {
           padding: 16px;

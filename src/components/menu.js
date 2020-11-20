@@ -1,3 +1,4 @@
+import { Link } from "gatsby"
 import React from "react"
 
 export default ({ author }) => {
@@ -5,7 +6,7 @@ export default ({ author }) => {
     <div className="menu-container">
       <div className="menu">
         <MenuHeader author={author} />
-        <MenuItem title={"Education"} />
+        <MenuItem title={"Education"} linkTo={"/education"} />
         <MenuItem title={"Experience"} />
         <MenuItem title={"Certifications"} />
         <MenuItem title={"Skills"} />
@@ -15,15 +16,19 @@ export default ({ author }) => {
   )
 }
 
-const MenuItem = ({ title }) => {
-  return <div className="menu-element selectable">{title}</div>
+const MenuItem = ({ title, linkTo }) => {
+  return (
+    <Link to={linkTo} className="menu-element selectable">
+      {title}
+    </Link>
+  )
 }
 
 const MenuHeader = ({ author }) => {
   return (
-    <div className="menu-element header">
+    <Link to="/" className="menu-element header">
       <div className="head">{author.name}</div>
       <div className="subhead">{author.summary}</div>
-    </div>
+    </Link>
   )
 }
