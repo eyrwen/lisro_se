@@ -1,11 +1,10 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
+import Logo from "../components/logo"
 
 const Home = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-
   const colorOrder = [
     { color: "#D9ADB5", fontColor: "#592341" },
     { color: "#592341", fontColor: "#D9ADB5" },
@@ -18,6 +17,14 @@ const Home = ({ data, location }) => {
   }
   return (
     <Layout author={data.site.siteMetadata.author}>
+      <header>
+        <Logo />
+        <div className="text-container">
+          <div className="main">Lis Rose</div>
+          <div className="sub">Ostrow</div>
+          <div className="small">Software Engineer</div>
+        </div>
+      </header>
       <div className="all-diagonal-container">
         {labelOrder.map((label, index) => (
           <DiagonalBox
@@ -51,12 +58,8 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { title: { eq: "Education" } }) {
       html
     }
-    rose: file(absolutePath: { regex: "/rose.png/" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
+    logo: file(absolutePath: { regex: "/LisRose logo - light.svg/" }) {
+      relativePath
     }
   }
 `

@@ -24,7 +24,7 @@
   $spacing-20: 5rem;
   $spacing-24: 6rem;
   $spacing-32: 8rem;
-  $fontFamily-sans: Montserrat,
+  $fontFamily-sans: Raleway,
   system-ui,
   -apple-system,
   BlinkMacSystemFont,
@@ -38,14 +38,14 @@
   "Segoe UI Emoji",
   "Segoe UI Symbol",
   "Noto Color Emoji";
-  $fontFamily-serif: "Merriweather",
+  $fontFamily-serif: 'Playview Display',
   "Georgia",
   Cambria,
   "Times New Roman",
   Times,
   serif;
-  $font-body: Montserrat;
-  $font-heading: Raleway;
+  $font-body: $fontFamily-sans;
+  $font-heading: $fontFamily-serif;
   $fontWeight-normal: 400;
   $fontWeight-medium: 500;
   $fontWeight-semibold: 600;
@@ -371,7 +371,7 @@
 
   .all-diagonal-container {
     position: relative; // fixes overflow
-    transform: translateY(25vh);
+    transform: translateY(7vh);
 
     .diagonal-box {
       transform: skewY(-1 * $rotate-style);
@@ -393,8 +393,42 @@
           display: inline-block;
           font-family: 'Playview Display';
           font-size: $fontSize-4;
-          font-weight: $fontWeight-black;
+          font-weight: $fontWeight-bold;
         }
+      }
+    }
+  }
+
+  header {
+    position: absolute;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    transform: rotate(-1 * $rotate-style) translateY(-15vh);
+
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      // transform: translateX(-100px);
+
+      .main {
+        font-size: $fontSize-7;
+        color: $color-heading;
+        font-weight: $fontWeight-bold;
+        line-height: 40%;
+      }
+
+      .sub {
+        font-size: $fontSize-5;
+        color: $color-text;
+        border-bottom: solid $color-text 1px;
+      }
+
+      .small {
+        font-size: $fontSize-1;
+        color: $color-heading;
+        font-weight: $fontWeight-semibold;
       }
     }
   }
