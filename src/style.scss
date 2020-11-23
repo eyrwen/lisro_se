@@ -365,29 +365,35 @@
     }
   }
 
+  $rotate-style: 11deg;
+  $diagonal-width: 100vw;
+  $diagonal-height: 5vh;
+
   .all-diagonal-container {
     position: relative; // fixes overflow
+    transform: translateY(25vh);
 
-    .diagonal-box-container {
-      position: absolute;
+    .diagonal-box {
+      transform: skewY(-1 * $rotate-style);
+      width: $diagonal-width;
+      height: $diagonal-height;
+      cursor: pointer;
+      border-width: 1px;
+      border-style: solid;
+      transition: height 300ms ease-in;
 
-      .diagonal-box {
-        transform: skewY(-11deg);
-        width: 100vw;
-        height: 100vh;
+      &:hover {
+        height: $diagonal-height+2;
+      }
 
-        .content {
-          margin: 0 auto;
-          transform: skewY(11deg) rotate(-11deg);
+      .content {
+        transform: skewY($rotate-style) rotate(-1 * $rotate-style);
 
-          h1,
-          h2,
-          h3,
-          h4,
-          h5,
-          h6 {
-            font-family: 'Playview Display';
-          }
+        span {
+          display: inline-block;
+          font-family: 'Playview Display';
+          font-size: $fontSize-4;
+          font-weight: $fontWeight-black;
         }
       }
     }

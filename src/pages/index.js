@@ -1,9 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
 
 const Home = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -16,8 +14,7 @@ const Home = ({ data, location }) => {
   ]
   const labelOrder = ["Education", "Experience", "Certifications", "Skills"]
   const labelSpacing = {
-    x: 300,
-    y: 45,
+    x: 25,
   }
   return (
     <Layout author={data.site.siteMetadata.author}>
@@ -30,7 +27,6 @@ const Home = ({ data, location }) => {
             color={colorOrder[index].color}
             fontColor={colorOrder[index].fontColor}
             zIndex={index}
-            translateY={index * labelSpacing.y}
             translateX={index * labelSpacing.x}
           />
         ))}
@@ -55,37 +51,50 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { title: { eq: "Education" } }) {
       html
     }
+    rose: file(absolutePath: { regex: "/rose.png/" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
   }
 `
 
-const DiagonalBox = ({
-  title,
-  translateY = 0,
-  translateX = 0,
-  zIndex = 0,
-  color,
-  fontColor,
-}) => {
-  return (
-    <div
-      className="diagonal-box-container"
-      style={{
-        transform: `translateY(${translateY + 100}px)`,
-        zIndex,
-      }}
-    >
-      <div className="diagonal-box" style={{ backgroundColor: color }}>
+class DiagonalBox extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      hover: false,
+    }
+  }
+
+  render() {
+    const { translateX, color, zIndex, fontColor, title } = this.props
+    const colorStyle = {
+      backgroundColor: color,
+      borderColor: color,
+    }
+    return (
+      <div
+        className="diagonal-box"
+        style={{
+          zIndex,
+          ...colorStyle,
+        }}
+      >
         <div className="content">
-          <h3
+          <span
             style={{
               color: fontColor,
-              transform: `translateX(${translateX}px)`,
+              transform: `translateX(${translateX}vw)`,
             }}
           >
             {title}
-          </h3>
+          </span>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
