@@ -367,11 +367,11 @@
 
   $rotate-style: 11deg;
   $diagonal-width: 100vw;
-  $diagonal-height: 5vh;
+  $diagonal-height: 50px;
+  $header-height: 200px;
 
   .all-diagonal-container {
     position: relative; // fixes overflow
-    transform: translateY(7vh);
 
     .diagonal-box {
       transform: skewY(-1 * $rotate-style);
@@ -383,7 +383,7 @@
       transition: height 300ms ease-in;
 
       &:hover {
-        height: $diagonal-height+2;
+        height: $diagonal-height+10;
       }
 
       .content {
@@ -400,17 +400,16 @@
   }
 
   header {
-    position: absolute;
-    width: 100vw;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    transform: rotate(-1 * $rotate-style) translateY(-15vh);
+    transform: rotate(-1 * $rotate-style);
+    height: $header-height;
+    margin-bottom: 10px;
 
     .text-container {
       display: flex;
       flex-direction: column;
-      // transform: translateX(-100px);
 
       .main {
         font-size: $fontSize-7;

@@ -4,42 +4,47 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Logo from "../components/logo"
 
-const Home = ({ data, location }) => {
-  const colorOrder = [
-    { color: "#D9ADB5", fontColor: "#592341" },
-    { color: "#592341", fontColor: "#D9ADB5" },
-    { color: "#012840", fontColor: "#A66660" },
-    { color: "#A66660", fontColor: "#012840" },
-  ]
-  const labelOrder = ["Education", "Experience", "Certifications", "Skills"]
-  const labelSpacing = {
-    x: 25,
-  }
-  return (
-    <Layout author={data.site.siteMetadata.author}>
-      <header>
-        <Logo />
-        <div className="text-container">
-          <div className="main">Lis Rose</div>
-          <div className="sub">Ostrow</div>
-          <div className="small">Software Engineer</div>
+const colorOrder = [
+  { color: "#D9ADB5", fontColor: "#592341" },
+  { color: "#592341", fontColor: "#D9ADB5" },
+  { color: "#012840", fontColor: "#A66660" },
+  { color: "#A66660", fontColor: "#012840" },
+]
+const labelOrder = ["Education", "Experience", "Certifications", "Skills"]
+const labelSpacing = {
+  x: 25,
+}
+
+class Home extends React.Component {
+  render() {
+    const { data } = this.props
+
+    return (
+      <Layout author={data.site.siteMetadata.author}>
+        <div style={{}} className="all-diagonal-container">
+          <header>
+            <Logo />
+            <div className="text-container">
+              <div className="main">Lis Rose</div>
+              <div className="sub">Ostrow</div>
+              <div className="small">Software Engineer</div>
+            </div>
+          </header>
+          {labelOrder.map((label, index) => (
+            <DiagonalBox
+              key={label}
+              title={label}
+              order={index}
+              color={colorOrder[index].color}
+              fontColor={colorOrder[index].fontColor}
+              zIndex={index}
+              translateX={index * labelSpacing.x}
+            />
+          ))}
         </div>
-      </header>
-      <div className="all-diagonal-container">
-        {labelOrder.map((label, index) => (
-          <DiagonalBox
-            key={label}
-            title={label}
-            order={index}
-            color={colorOrder[index].color}
-            fontColor={colorOrder[index].fontColor}
-            zIndex={index}
-            translateX={index * labelSpacing.x}
-          />
-        ))}
-      </div>
-    </Layout>
-  )
+      </Layout>
+    )
+  }
 }
 
 export default Home
