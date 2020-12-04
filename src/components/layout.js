@@ -6,7 +6,7 @@ const Layout = ({ location, title, children, author }) => {
     <div className="global-wrapper">
       {/* <Menu author={author} /> */}
       {children}
-      <Bio />
+      {/* <Bio /> */}
     </div>
   )
 }
