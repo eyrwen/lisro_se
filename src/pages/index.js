@@ -148,23 +148,6 @@ const labelToContent = {
 }
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {}
-    Object.values(ContentTypes).forEach(type => {
-      this.state[type] = false
-    })
-  }
-
-  handleOpen(label) {
-    const newState = {}
-    Object.values(ContentTypes).forEach(type => {
-      type === label ? (newState[type] = true) : (newState[type] = false)
-    })
-    this.setState(newState)
-  }
-
   render() {
     const { data } = this.props
 
@@ -188,8 +171,6 @@ class Home extends React.Component {
               fontColor={labelToColor[label].header}
               zIndex={index}
               translateX={index * labelSpacing.x}
-              open={this.state[label]}
-              onClick={() => this.handleOpen(label)}
             >
               {labelToContent[label]}
             </DiagonalBox>
@@ -228,6 +209,7 @@ class DiagonalBox extends React.Component {
       hiddenContentHeight: 0,
       mounted: false,
       hover: false,
+      open: false,
     }
   }
 
@@ -236,7 +218,6 @@ class DiagonalBox extends React.Component {
       hiddenContentHeight: this.hideableContent.scrollHeight,
       mounted: true,
     })
-    console.log(this.hideableContent.style)
   }
 
   render() {
@@ -246,7 +227,7 @@ class DiagonalBox extends React.Component {
       borderColor: color,
     }
     let displayHeight = DIAGONAL_BAR_HEIGHT
-    if (this.props.open) {
+    if (this.state.open) {
       displayHeight += this.state.hiddenContentHeight + DIAGONAL_PADDING
     } else if (this.state.hover) {
       displayHeight += HOVER_GROW
@@ -261,16 +242,7 @@ class DiagonalBox extends React.Component {
           ...colorStyle,
         }}
         onClick={() => {
-          this.setState(
-            {
-              clicked: true,
-              displayHeight:
-                DIAGONAL_BAR_HEIGHT +
-                this.state.hiddenContentHeight +
-                DIAGONAL_PADDING,
-            },
-            this.props.onClick
-          )
+          this.setState({ open: !this.state.open })
         }}
         onMouseEnter={() => {
           this.setState({ hover: true })
@@ -296,7 +268,7 @@ class DiagonalBox extends React.Component {
             this.hideableContent = el
           }}
           style={{
-            display: this.props.open || !this.state.mounted ? "" : "none",
+            display: this.state.open || !this.state.mounted ? "" : "none",
           }}
         >
           {children}
