@@ -440,3 +440,23 @@
       }
     }
   }
+
+  .bio {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    display: flex;
+    align-items: center;
+
+    span {
+      padding-left: 8px;
+    }
+
+    a {
+      padding-left: 8px;
+
+      &:hover {
+        opacity: .8;
+      }
+    }
+  }

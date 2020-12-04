@@ -9,6 +9,8 @@ module.exports = {
     siteUrl: `https://lisro.se/`,
     social: {
       twitter: `LisOstrow`,
+      resume: `https://docs.google.com/document/d/1PKR78Ucl4pY64ebHI2JfclwRTxx5KLyy7JvVc1VWCWc/edit?usp=sharing`,
+      source: `https://github.com/eyrwen/lisro_se`,
     },
   },
   plugins: [

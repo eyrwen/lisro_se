@@ -10,3 +10,11 @@ import "./src/style.scss"
 
 // Highlighting for code blocks
 import "prismjs/themes/prism.css"
+
+// icon library
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { fab } from "@fortawesome/free-brands-svg-icons"
+import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons"
+import { faFileAlt } from "@fortawesome/free-solid-svg-icons"
+
+library.add(fab, faTwitter, faGithub, faFileAlt)
