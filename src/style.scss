@@ -258,7 +258,7 @@
     // padding: $spacing-10 $spacing-5;
     height: 100vh;
     display: flex;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
   $slide-time: .5s;
@@ -367,33 +367,42 @@
 
   $rotate-style: 11deg;
   $diagonal-width: 100vw;
-  $diagonal-height: 50px;
   $header-height: 200px;
 
   .all-diagonal-container {
     position: relative; // fixes overflow
 
     .diagonal-box {
+      top: 0;
       transform: skewY(-1 * $rotate-style);
       width: $diagonal-width;
-      height: $diagonal-height;
+      transition: height 300ms ease-in;
       cursor: pointer;
       border-width: 1px;
       border-style: solid;
-      transition: height 300ms ease-in;
+      overflow: hidden;
 
-      &:hover {
-        height: $diagonal-height+10;
-      }
-
-      .content {
+      .diagonal-inner {
         transform: skewY($rotate-style) rotate(-1 * $rotate-style);
 
-        span {
+        div.always-show {
           display: inline-block;
           font-family: 'Playview Display';
           font-size: $fontSize-4;
           font-weight: $fontWeight-bold;
+        }
+
+        .content {
+          padding-left: 16px;
+        }
+
+        span,
+        div {
+          font-family: Montserrat $fontFamily-sans;
+
+          .light {
+            opacity: .8;
+          }
         }
       }
     }
