@@ -369,7 +369,7 @@
     display: flex;
 
     .title {
-      font-family: 'Playview Display'$fontFamily-serif;
+      font-family: $fontFamily-serif;
       font-size: $fontSize-5;
       font-weight: $fontWeight-bold;
       min-width: 250px;
@@ -398,6 +398,20 @@
     h6 {
       margin-block-end: 0;
       margin-block-start: 0;
+    }
+
+    .collapse {
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 4px;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
     }
 
   }

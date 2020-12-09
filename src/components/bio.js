@@ -30,6 +30,7 @@ const Bio = () => {
             twitter
             resume
             source
+            linkedin
           }
         }
       }
@@ -63,6 +64,13 @@ const Bio = () => {
             <FontAwesomeIcon
               icon={["fab", "github"]}
               aria-label="Source Code"
+              size="lg"
+            />
+          </a>
+          <a href={`https://linkedin.com/in/${social?.linkedin || ``}`}>
+            <FontAwesomeIcon
+              icon={["fab", "linkedin"]}
+              aria-label="LinkedIn"
               size="lg"
             />
           </a>

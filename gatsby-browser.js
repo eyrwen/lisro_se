@@ -14,7 +14,11 @@ import "prismjs/themes/prism.css"
 // icon library
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { fab } from "@fortawesome/free-brands-svg-icons"
-import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons"
-import { faFileAlt } from "@fortawesome/free-solid-svg-icons"
+import {
+  faTwitter,
+  faGithub,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons"
+import { faFileAlt, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons"
 
-library.add(fab, faTwitter, faGithub, faFileAlt)
+library.add(fab, faTwitter, faGithub, faFileAlt, faPlus, faMinus, faLinkedin)
