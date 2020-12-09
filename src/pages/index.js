@@ -26,15 +26,15 @@ const labelToColor = {
   [ContentTypes.EXPERIENCE]: {
     color: "#592341",
     header: "#D9ADB5",
-    text: "#A66660",
+    text: "#bd746e",
   },
   [ContentTypes.CERTIFICATIONS]: {
     color: "#012840",
-    header: "#A66660",
+    header: "#bd746e",
     text: "#D9ADB5",
   },
   [ContentTypes.SKILLS]: {
-    color: "#A66660",
+    color: "#bd746e",
     header: "#012840",
     text: "#592341",
   },
