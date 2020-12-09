@@ -2,7 +2,6 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Logo from "../components/logo"
 
 const ContentTypes = {
   EDUCATION: "Education",
@@ -17,9 +16,6 @@ const labelOrder = [
   ContentTypes.CERTIFICATIONS,
   ContentTypes.SKILLS,
 ]
-const labelSpacing = {
-  x: 25,
-}
 
 const labelToColor = {
   [ContentTypes.EDUCATION]: {
@@ -47,17 +43,15 @@ const labelToColor = {
 const ContentHeader = ({ label, text, sub }) => {
   return (
     <div>
-      <h3
+      <h4
         style={{
-          marginBlockStart: 0,
-          marginBlockEnd: 0,
           color: labelToColor[label].header,
           display: "inline-block",
           paddingRight: 32,
         }}
       >
         {text}
-      </h3>
+      </h4>
       <span style={{ color: labelToColor[label].text }}>{sub}</span>
     </div>
   )
@@ -66,7 +60,6 @@ const ContentHeader = ({ label, text, sub }) => {
 const Content = ({ label, children }) => {
   return (
     <div className="content" style={{ color: labelToColor[label].text }}>
-      <hr style={{ backgroundColor: labelToColor[label].header }} />
       {children}
     </div>
   )
@@ -100,7 +93,7 @@ const labelToContent = {
     </Content>
   ),
   [ContentTypes.EXPERIENCE]: (
-    <>
+    <div>
       <Content label={ContentTypes.EXPERIENCE}>
         <ContentHeader
           label={ContentTypes.EXPERIENCE}
@@ -108,6 +101,11 @@ const labelToContent = {
           sub={<DatedSpan text="BAE Systems" date="July 2018-(Current)" />}
         />
       </Content>
+      <hr
+        style={{
+          backgroundColor: labelToColor[ContentTypes.EXPERIENCE].header,
+        }}
+      />
       <Content label={ContentTypes.EXPERIENCE}>
         <ContentHeader
           label={ContentTypes.EXPERIENCE}
@@ -120,7 +118,7 @@ const labelToContent = {
           }
         />
       </Content>
-    </>
+    </div>
   ),
   [ContentTypes.CERTIFICATIONS]: (
     <Content label={ContentTypes.CERTIFICATIONS}>
@@ -153,29 +151,18 @@ class Home extends React.Component {
 
     return (
       <Layout author={data.site.siteMetadata.author}>
-        <div className="all-diagonal-container">
-          <header>
-            <Logo />
-            <div className="text-container">
-              <div className="main">Lis Rose</div>
-              <div className="sub">Ostrow</div>
-              <div className="small">Software Engineer</div>
-            </div>
-          </header>
           {labelOrder.map((label, index) => (
-            <DiagonalBox
-              key={label}
-              title={label}
-              order={index}
-              color={labelToColor[label].color}
-              fontColor={labelToColor[label].header}
-              zIndex={index}
-              translateX={index * labelSpacing.x}
+          <div
+            className="content-container"
+            style={{
+              backgroundColor: labelToColor[label].color,
+              color: labelToColor[label].header,
+            }}
             >
+            <div className="title">{label}</div>
               {labelToContent[label]}
-            </DiagonalBox>
-          ))}
         </div>
+        ))}
       </Layout>
     )
   }
@@ -196,84 +183,3 @@ export const pageQuery = graphql`
     }
   }
 `
-
-const DIAGONAL_BAR_HEIGHT = 50
-const DIAGONAL_PADDING = 16
-const HOVER_GROW = 10
-
-class DiagonalBox extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      hiddenContentHeight: 0,
-      mounted: false,
-      hover: false,
-      open: false,
-    }
-  }
-
-  componentDidMount() {
-    this.setState({
-      hiddenContentHeight: this.hideableContent.scrollHeight,
-      mounted: true,
-    })
-  }
-
-  render() {
-    const { translateX, color, zIndex, fontColor, title, children } = this.props
-    const colorStyle = {
-      backgroundColor: color,
-      borderColor: color,
-    }
-    let displayHeight = DIAGONAL_BAR_HEIGHT
-    if (this.state.open) {
-      displayHeight += this.state.hiddenContentHeight + DIAGONAL_PADDING
-    } else if (this.state.hover) {
-      displayHeight += HOVER_GROW
-    }
-    return (
-      <div
-        className="diagonal-box"
-        style={{
-          zIndex,
-          height: displayHeight,
-          paddingBottom: DIAGONAL_PADDING,
-          ...colorStyle,
-        }}
-        onClick={() => {
-          this.setState({ open: !this.state.open })
-        }}
-        onMouseEnter={() => {
-          this.setState({ hover: true })
-        }}
-        onMouseLeave={() => {
-          this.setState({ hover: false })
-        }}
-      >
-        <div className="diagonal-inner">
-          <div
-            className="always-show"
-            style={{
-              color: fontColor,
-              transform: `translateX(${translateX}vw)`,
-            }}
-          >
-            {title}
-          </div>
-        </div>
-        <div
-          className="diagonal-inner"
-          ref={el => {
-            this.hideableContent = el
-          }}
-          style={{
-            display: this.state.open || !this.state.mounted ? "" : "none",
-          }}
-        >
-          {children}
-        </div>
-      </div>
-    )
-  }
-}

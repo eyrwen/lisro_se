@@ -56,7 +56,6 @@ const Bio = () => {
       )}
       {author?.name && (
         <span>
-          You should hire me!
           <a href={social?.resume}>
             <FontAwesomeIcon icon="file-alt" aria-label="Resume" size="lg" />
           </a>

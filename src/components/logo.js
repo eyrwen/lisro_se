@@ -6,7 +6,7 @@ const Logo = () => {
       version="1.1"
       width={200}
       height={200}
-      viewBox="0 0 425 425"
+      viewBox="0 0 450 450"
       x="0px"
       y="0px"
     >

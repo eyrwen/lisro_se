@@ -7,9 +7,9 @@
   $maxWidth-2xl: 42rem;
   $maxWidth-3xl: 48rem;
   $maxWidth-4xl: 56rem;
-  $maxWidth-full: "100%";
+  $maxWidth-full: 100%;
   $maxWidth-wrapper: $maxWidth-full;
-  $spacing-px: "1px";
+  $spacing-px: 1px;
   $spacing-0: 0;
   $spacing-1: 0.25rem;
   $spacing-2: 0.5rem;
@@ -66,7 +66,7 @@
   $fontSize-5: 2.074rem;
   $fontSize-6: 2.488rem;
   $fontSize-7: 2.986rem;
-  $color-primary: #A66660;
+  $color-primary: #bd746e;
   $color-text: #012840;
   $color-text-light: #4f5969;
   $color-heading: #592341;
@@ -181,11 +181,11 @@
 
   ul,
   ol {
-    margin-left: $spacing-0;
+    margin-left: $spacing-8;
     margin-right: $spacing-0;
     padding: $spacing-0;
     margin-bottom: $spacing-8;
-    list-style-position: outside;
+    // list-style-position: outside;
     list-style-image: none;
   }
 
@@ -255,10 +255,9 @@
   .global-wrapper {
     margin: $spacing-0 auto;
     max-width: $maxWidth-wrapper;
-    // padding: $spacing-10 $spacing-5;
     height: 100vh;
     display: flex;
-    overflow-x: hidden;
+    flex-direction: column;
   }
 
   $slide-time: .5s;
@@ -365,55 +364,48 @@
     }
   }
 
-  $rotate-style: 11deg;
-  $diagonal-width: 100vw;
-  $header-height: 200px;
+  .content-container {
+    padding-left: 16px;
+    display: flex;
 
-  .all-diagonal-container {
-    position: relative; // fixes overflow
+    .title {
+      font-family: 'Playview Display'$fontFamily-serif;
+      font-size: $fontSize-5;
+      font-weight: $fontWeight-bold;
+      min-width: 250px;
+      max-width: 25%;
+    }
 
-    .diagonal-box {
-      top: 0;
-      transform: skewY(-1 * $rotate-style);
-      width: $diagonal-width;
-      transition: height 300ms ease-in;
-      cursor: pointer;
-      border-width: 1px;
-      border-style: solid;
-      overflow: hidden;
+    .content {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
 
-      .diagonal-inner {
-        transform: skewY($rotate-style) rotate(-1 * $rotate-style);
+    span,
+    div {
+      font-family: Montserrat $fontFamily-sans;
 
-        div.always-show {
-          display: inline-block;
-          font-family: 'Playview Display';
-          font-size: $fontSize-4;
-          font-weight: $fontWeight-bold;
-        }
-
-        .content {
-          padding-left: 16px;
-        }
-
-        span,
-        div {
-          font-family: Montserrat $fontFamily-sans;
-
-          .light {
-            opacity: .8;
-          }
-        }
+      .light {
+        opacity: .8;
       }
     }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-block-end: 0;
+      margin-block-start: 0;
+    }
+
   }
 
   header {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    transform: rotate(-1 * $rotate-style);
-    height: $header-height;
     margin-bottom: 10px;
 
     .text-container {
@@ -442,11 +434,10 @@
   }
 
   .bio {
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
     display: flex;
     align-items: center;
+    max-height: 50px;
+    padding: 32px 8px 32px 8px;
 
     span {
       padding-left: 8px;
